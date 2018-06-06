@@ -5,6 +5,16 @@ app.use(bodyParser.urlencoded());
 
 app.use(function(req, res, next) {
   res.set('Access-Control-Allow-Origin', '*');
+  
+  // res.set('Access-Control-Allow-Methods', 'PUT'); // Any methods other than GET, HEAD and POST.
+  
+  res.set('Access-Control-Allow-Headers', 'Content-Type');
+  
+  // res.set('Access-Control-Max-Age', 1728000)
+  
+  if ('OPTIONS' == req.method) {
+    return res.send(200);
+  }
   next();
 });
 
@@ -26,3 +36,4 @@ notifications.get(function(req, res) {
 });
 
 var designVotes = app.route('/design/:id/votes');
+
